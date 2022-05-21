@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { prodottoCercato, cercaProdotto } from '../states/products.js'
+import { prodottoCercato, cercaProdotto, salvaProdotto } from '../states/products.js'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
@@ -15,7 +15,7 @@ function cercaProdottoButton() {
     warningMessage.value = 'inserisci il prodotto da cercre'
     return;
   }
-  warningMessage.value = 'prodotti trovati:'
+  warningMessage.value = ''
   cercaProdotto(cercato.value).catch( err => console.error(err) );
 };
 
@@ -37,7 +37,7 @@ function cercaProdottoButton() {
 
    <ul>
     <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-      <a :href="HOST+prodottoCercato.self">{{prodottoCercato.name}}</a>
+      <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{prodottoCercato.name}}</router-link>
     </li>
    </ul>
 

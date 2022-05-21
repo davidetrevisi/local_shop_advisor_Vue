@@ -18,12 +18,12 @@ const router = createRouter({
       component: () => import('../views/InserimentoView.vue')
     },
     {
-      path: '/rimozione',
-      name: 'rimozione',
+      path: '/catalogo',
+      name: 'catalogo',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/RimozioneView.vue')
+      component: () => import('../views/CatalogoView.vue')
     },
     {
       path: '/ricerca',
@@ -34,12 +34,44 @@ const router = createRouter({
       component: () => import('../views/RicercaView.vue')
     },
     {
-      path: '/modifica',
-      name: 'modifica',
+      path: '/modificaProdotto',
+      name: 'modificaProdotto',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ModificaView.vue')
+      component: () => import('../views/ModificaProdottoView.vue')
+    },
+    {
+      path: '/negozio',
+      name: 'negozio',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/NegozioView.vue')
+    },
+    {
+      path: '/modificaNegozio',
+      name: 'modificaNegozio',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/ModificaNegozioView.vue')
+    },
+    {
+      path: '/prodotto',
+      name: 'prodotto',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/ProdottoView.vue')
+    },
+    {
+      path: '/infoNegozio',
+      name: 'infoNegozio',
+      // route level code-splitting
+      // this generates a separate chunk (About.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import('../views/InfoNegozioView.vue')
     }
   ]
 })

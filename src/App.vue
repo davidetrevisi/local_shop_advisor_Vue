@@ -15,7 +15,8 @@ import { ref, onMounted } from 'vue'
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/inserimento">Inserimento</RouterLink>
-        <RouterLink to="/rimozione">Rimozione</RouterLink>
+        <RouterLink to="/catalogo">Catalogo</RouterLink>
+        <RouterLink to="/negozio">Negozi</RouterLink>
         <RouterLink to="/ricerca">Ricerca</RouterLink>
       </nav>
       
