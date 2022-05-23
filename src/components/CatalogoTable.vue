@@ -1,12 +1,13 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { prodotto, fetchProdotto, deleteProdotto, salvaProdotto } from '../states/products.js'
+import { aggiungiCarrello } from '../states/carts.js'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
 const PRODUCTS_URL = API_URL + '/products'
 
-onMounted( () => {
+onMounted(() => {
   fetchProdotto() // fetch on init
 })
 
@@ -17,7 +18,9 @@ onMounted( () => {
 
   <ul>
     <li v-for="prodotto in prodotto.value" :key="prodotto.self">
-      <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{prodotto.name}}</router-link>
+      <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
+      -
+      <button @click="aggiungiCarrello(prodotto)">Aggiungi a carrello</button>
       -
       <button @click="$router.push('/modificaProdotto'); salvaProdotto(prodotto)">Modifica</button>
       -

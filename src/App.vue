@@ -1,5 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { cercaCarrello } from '@/states/carts.js'
 import HelloWorld from '@/components/HelloWorld.vue'
 
 import { ref, onMounted } from 'vue'
@@ -18,8 +19,9 @@ import { ref, onMounted } from 'vue'
         <RouterLink to="/catalogo">Catalogo</RouterLink>
         <RouterLink to="/negozio">Negozi</RouterLink>
         <RouterLink to="/ricerca">Ricerca</RouterLink>
+        <RouterLink to="/carrello" @click="cercaCarrello()">Carrello</RouterLink>
       </nav>
-      
+
       <h2>pagina di prova</h2>
     </div>
   </header>
