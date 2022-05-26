@@ -10,10 +10,8 @@ const PRODUCTS_URL = API_URL + '/products'
 const prodotto = reactive([])
 
 const prodottoCercato = reactive([])
-const prodottoCercatoId = reactive([])
 
 const prodottoDaModificare = reactive([])
-
 
 
 async function fetchProdotto() {
@@ -42,6 +40,7 @@ async function cercaProdotto(nome) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })).json()
+   
 };
 
 async function salvaProdotto(prodotto) {

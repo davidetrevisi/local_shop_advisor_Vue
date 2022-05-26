@@ -12,7 +12,6 @@ var nome
 var prodotti
 var totale
 
-
 async function aggiungiCarrello(prodotto,quantita) {
     console.log(prodotto.id)
     await fetch(CARTS_URL, {
