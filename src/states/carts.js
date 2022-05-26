@@ -8,22 +8,29 @@ const quant = 5
 
 const carrello = reactive([])
 const carrelloSalvato = reactive([])
-
 var nome
 var prodotti
 var totale
 
 
-async function aggiungiCarrello(prodotto) {
+async function aggiungiCarrello(prodotto,quantita) {
     console.log(prodotto.id)
     await fetch(CARTS_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: userId, itemId: prodotto.id, quantity: quant }),
+        body: JSON.stringify({ userId: userId, itemId: prodotto.id, quantity: quantita }),
     })
     cercaCarrello()
 }
-
+async function eliminaCarrello(id) {
+    console.log(id)
+    await fetch(CARTS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: userId, itemId: id, quantity: 0 }),
+    })
+    cercaCarrello()
+}
 async function cercaCarrello() {
     carrello.value = await (await fetch(CARTS_URL + '/' + userId, {
         method: 'GET',
@@ -33,6 +40,7 @@ async function cercaCarrello() {
 };
 
 
+
 function salvaCarrello(nome, prodotti, totale) {
     carrelloSalvato.user = nome
     carrelloSalvato.items = prodotti
@@ -40,4 +48,4 @@ function salvaCarrello(nome, prodotti, totale) {
 }
 
 
-export { carrello, carrelloSalvato, cercaCarrello, aggiungiCarrello, salvaCarrello } 
+export { carrello, carrelloSalvato, cercaCarrello, aggiungiCarrello, salvaCarrello, eliminaCarrello } 

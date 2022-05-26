@@ -1,7 +1,6 @@
 <script setup>
 import { } from 'vue'
-import { carrello, cercaCarrello, carrelloSalvato } from '../states/carts.js'
-
+import { carrello, cercaCarrello, carrelloSalvato, eliminaCarrello} from '../states/carts.js'
 cercaCarrello()
 
 </script>
@@ -15,6 +14,7 @@ cercaCarrello()
         <li v-for="item in carrelloSalvato.items" :key="item.value">
             <h3>Prodotto: {{ item.productId }}</h3>
             <h3>Quantitá: {{ item.quantity }}</h3>
+            <button @click="eliminaCarrello(item.productId)">Elimina il prodotto dal carrello</button>
         </li>
     </ul>
 
