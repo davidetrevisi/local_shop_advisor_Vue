@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`;
-const API_URL = HOST + `/api/v1`;
+import { login, signup } from "../states/users.js";
 
 const account = ref("cliente");
 const email = ref("");
@@ -31,6 +30,33 @@ function toggleRed() {
   isRed.value = !isRed.value;
 }
 
+function signupButton() {
+  signup(
+    account.value,
+    email.value,
+    password.value,
+    name.value,
+    surname.value,
+    phone.value,
+    stringToDate(birthdate.value),
+    payment.value,
+    shipping_city.value,
+    shipping_CAP.value,
+    shipping_street.value,
+    shipping_number.value,
+    billing_city.value,
+    billing_CAP.value,
+    billing_street.value,
+    billing_number.value,
+    personal_city.value,
+    personal_CAP.value,
+    personal_street.value,
+    personal_number.value,
+  );
+  
+  setTimeout(() => login(email.value, password.value), 2000);
+}
+
 function isNumeric(value) {
   return Number.isInteger(value);
 }
@@ -38,63 +64,6 @@ function isNumeric(value) {
 const canRegister = computed(
   () => isNumeric(phone.value) && stringToDate(birthdate.value) < new Date()
 );
-
-function signup() {
-  if (account.value === "cliente") {
-    fetch(API_URL + "/authentications/signup", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        account: account.value,
-        email: email.value,
-        password: password.value,
-        name: name.value,
-        surname: surname.value,
-        phone: phone.value,
-        birthdate: stringToDate(birthdate.value),
-        payment: payment.value,
-        shipping_city: shipping_city.value,
-        shipping_CAP: shipping_CAP.value,
-        shipping_street: shipping_street.value,
-        shipping_number: shipping_number.value,
-        billing_city: billing_city.value,
-        billing_CAP: billing_CAP.value,
-        billing_street: billing_street.value,
-        billing_number: billing_number.value,
-      }),
-    })
-      .then((res) => console.log(res.data)) // Transform the data into json
-      .catch((error) => console.error(error)); // If there is any error you will catch them here
-  } else if (account.value === "venditore") {
-    fetch(API_URL + "/authentications/signup", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        account: account.value,
-        email: email.value,
-        password: password.value,
-        name: name.value,
-        surname: surname.value,
-        phone: phone.value,
-        birthdate: stringToDate(birthdate.value),
-        personal_city: personal_city.value,
-        personal_CAP: personal_CAP.value,
-        personal_street: personal_street.value,
-        personal_number: personal_number.value,
-      }),
-    })
-      .then((res) => console.log(res.data)) // Transform the data into json
-      .catch((error) => console.error(error)); // If there is any error you will catch them here
-  }
-}
 
 function stringToDate(str) {
   const [y, m, d] = str.split("-");
@@ -217,7 +186,7 @@ function pad(n, s = String(n)) {
     />
 
     <div />
-    <button :disabled="!canRegister" type="button" @click="signup">
+    <button :disabled="!canRegister" type="button" @click="signupButton">
       Registrati
     </button>
     <p>{{ canRegister ? "" : "Alcuni parametri sono errati." }}</p>

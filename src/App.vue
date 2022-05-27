@@ -1,10 +1,15 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { cercaCarrello } from '@/states/carts.js'
-import Login from '@/components/Login.vue'
+import { RouterLink, RouterView } from "vue-router";
+import { cercaCarrello } from "@/states/carts.js";
+import Login from "@/components/Login.vue";
+import { loggedUser } from "@/states/users.js";
 
-import { ref, onMounted } from 'vue'
+import { ref, computed } from "vue";
 
+const isLoggedIn = computed(() => loggedUser.account !== undefined);
+const isVenditore = computed(() => loggedUser.account === "Venditore");
+const isCliente = computed(() => loggedUser.account === "Cliente");
+const isAdmin = computed(() => loggedUser.account === "Admin");
 </script>
 
 <template>
@@ -12,15 +17,14 @@ import { ref, onMounted } from 'vue'
     <img alt="Vue logo" class="logo" src="@/assets/Logo2.png" width="100" />
 
     <div class="wrapper">
-
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/registrazione">Registrazione</RouterLink>
-        <RouterLink to="/inserimento">Inserimento</RouterLink>
-        <RouterLink to="/catalogo">Catalogo</RouterLink>
-        <RouterLink to="/negozio">Negozi</RouterLink>
-        <RouterLink to="/ricerca">Ricerca</RouterLink>
-        <RouterLink to="/carrello" @click="cercaCarrello()">Carrello</RouterLink>
+        <RouterLink to="/registrazione" v-if="!isLoggedIn || isAdmin">Registrazione</RouterLink>
+        <RouterLink to="/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
+        <RouterLink to="/catalogo" v-if="!isVenditore || isAdmin">Catalogo</RouterLink>
+        <RouterLink to="/negozio" v-if="isVenditore || isAdmin">Negozi</RouterLink>
+        <RouterLink to="/ricerca" v-if="!isVenditore || isAdmin">Ricerca</RouterLink>
+        <RouterLink to="/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello</RouterLink>
       </nav>
       <br />
       <Login />
@@ -32,7 +36,7 @@ import { ref, onMounted } from 'vue'
 </template>
 
 <style>
-@import '@/assets/base.css';
+@import "@/assets/base.css";
 
 #app {
   max-width: 1280px;

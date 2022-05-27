@@ -27,7 +27,7 @@ function createProdottoButton() {
 };
 
 function createNegozioButton() {
-  if (name1.value=='' || category1.value=='' || price.value=='' || description1.value=='') {
+  if (name1.value=='' || category1.value=='' || position.value=='' || description1.value=='') {
     warningMessage1.value = 'Please specify valid items!'
     return;
   }
