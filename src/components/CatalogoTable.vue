@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
+import { loggedUser } from '../states/users.js'
 import { prodotto, fetchProdotto, deleteProdotto, salvaProdotto } from '../states/products.js'
 import { aggiungiCarrello } from '../states/carts.js'
 
@@ -14,13 +15,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <form>
-    <center>
-      <h1>Prodotti in catalogo:</h1>
-    </center>
-    <ul>
-      <li v-for="prodotto in prodotto.value" :key="prodotto.self">
-        <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
+  <h1>Prodotti in catalogo:</h1>
+
+  <ul>
+    <li v-for="prodotto in prodotto.value" :key="prodotto.self">
+      <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
+      <span v-if="loggedUser.account == 'Venditore'">
         -
         <!--<input
       v-model="quantity"
@@ -33,8 +33,8 @@ onMounted(() => {
         <button @click="$router.push('/modificaProdotto'); salvaProdotto(prodotto)">Modifica</button>
         -
         <button @click="deleteProdotto(prodotto)">Rimuovi</button>
-      </li>
-    </ul>
-  </form>
+      </span>
+    </li>
+  </ul>
 
 </template>
