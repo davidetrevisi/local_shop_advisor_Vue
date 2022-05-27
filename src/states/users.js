@@ -1,14 +1,15 @@
 import { reactive, ref, onMounted, watch } from "vue";
 
+const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`;
+const API_URL = HOST + `/api/v1`;
+
+
 const loggedUser = reactive({
   account: undefined,
   email: undefined,
   id: undefined,
   self: undefined,
 });
-
-const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`;
-const API_URL = HOST + `/api/v1`;
 
 function setLoggedUser(data) {
   loggedUser.account = data.account;
@@ -25,15 +26,17 @@ function clearLoggedUser() {
 }
 
 async function login(email, password) {
-  await fetch(API_URL + "/authentications/login", {
+  fetch(API_URL + "/authentications/login", {
     method: "POST",
     credentials: "include",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    headers: { "Content-Type": "application/json", /*Accept: "application/json"*/ },
     body: JSON.stringify({ email: email, password: password }),
   })
     .then((res) => res.json())
     .then(function (data) {
       setLoggedUser(data);
+      console.log(data.message)
+      return;
     })
     .catch((error) => console.error(error)); // If there is any error you will catch them here
 }

@@ -14,13 +14,15 @@ onMounted(() => {
 </script>
 
 <template>
-  <h1>Prodotti in catalogo:</h1>
-
-  <ul>
-    <li v-for="prodotto in prodotto.value" :key="prodotto.self">
-      <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
-      -    
-      <!--<input
+  <form>
+    <center>
+      <h1>Prodotti in catalogo:</h1>
+    </center>
+    <ul>
+      <li v-for="prodotto in prodotto.value" :key="prodotto.self">
+        <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
+        -
+        <!--<input
       v-model="quantity"
       placeholder="Quantitá"
       />
@@ -28,10 +30,11 @@ onMounted(() => {
       -
       <button @click="aggiungiCarrello(prodotto,quantity)">Aggiungi a carrello</button>
       - -->
-      <button @click="$router.push('/modificaProdotto'); salvaProdotto(prodotto)">Modifica</button>
-      -
-      <button @click="deleteProdotto(prodotto)">Rimuovi</button>
-    </li>
-  </ul>
+        <button @click="$router.push('/modificaProdotto'); salvaProdotto(prodotto)">Modifica</button>
+        -
+        <button @click="deleteProdotto(prodotto)">Rimuovi</button>
+      </li>
+    </ul>
+  </form>
 
 </template>
