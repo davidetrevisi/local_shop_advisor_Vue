@@ -22,9 +22,9 @@ import { ref, onMounted } from 'vue'
         <RouterLink to="/ricerca">Ricerca</RouterLink>
         <RouterLink to="/carrello" @click="cercaCarrello()">Carrello</RouterLink>
       </nav>
-
+      <br />
       <Login />
-      <h2>pagina di prova</h2>
+      <br />
     </div>
   </header>
 
@@ -45,6 +45,7 @@ import { ref, onMounted } from 'vue'
 header {
   line-height: 1.5;
   max-height: 100vh;
+  text-align: center;
 }
 
 .logo {
@@ -67,7 +68,7 @@ a,
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 20px;
   text-align: center;
   margin-top: 2rem;
 }
@@ -90,6 +91,7 @@ nav a:first-of-type {
   border: 0;
 }
 
+/*
 @media (min-width: 1024px) {
   body {
     display: flex;
@@ -126,5 +128,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+}*/
 </style>
