@@ -20,7 +20,7 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
   <div class="log">
 
     <Login />
-    <button v-if="!isLoggedIn || !isAdmin" @click="$router.push('/registrazione')">Registrati</button>
+    <button v-if="loggedUser.account == undefined" @click="$router.push('/registrazione')">Registrati</button>
 
   </div>
 
@@ -33,7 +33,7 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
-        <RouterLink to="/catalogo">Catalogo</RouterLink>
+        <RouterLink to="/catalogo" v-if="!isVenditore">Catalogo</RouterLink>
         <RouterLink to="/catalogoVenditore" @click="catalogoProdotto()" v-if="isVenditore">Catalogo</RouterLink>
         <RouterLink to="/negozio" @click="listaNegozi()" v-if="isVenditore || isAdmin">Negozi</RouterLink>
         <RouterLink to="/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello</RouterLink>
