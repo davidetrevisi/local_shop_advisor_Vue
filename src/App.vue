@@ -34,7 +34,7 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
         <RouterLink to="/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
         <RouterLink to="/catalogo">Catalogo</RouterLink>
         <RouterLink to="/negozio" v-if="isVenditore || isAdmin">Negozi</RouterLink>
-        <RouterLink to="/ricerca" v-if="!isVenditore || isAdmin">Ricerca</RouterLink>
+        <!-- <RouterLink to="/ricerca" v-if="!isVenditore || isAdmin">Ricerca</RouterLink> unito pagina di catalogo e ricerca-->
         <RouterLink to="/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello</RouterLink>
       </nav>
       <br />
