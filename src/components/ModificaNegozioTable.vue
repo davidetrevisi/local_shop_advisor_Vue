@@ -21,7 +21,7 @@ function modificaNegozioButton(ID) {
 
 <template>
   <form>
-    <span>Modifica il prodotto</span>
+    <span>Modifica il negozio</span>
     <br />
     <input v-model="name" />
     <input v-model="category" />

@@ -1,11 +1,11 @@
 import { reactive } from 'vue'
-
+import { loggedUser } from '../states/users.js'
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
 const SHOPS_URL = API_URL + '/shops'
 
 const negozio = reactive([])
-
+const listaNegozio = reactive([])
 const negozioDaModificare = reactive([])
 
 async function fetchNegozio() {
@@ -16,16 +16,24 @@ async function createNegozio(nome, categoria, posizione, descrizione) { //da rim
     fetch(SHOPS_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: nome, category: categoria, position: posizione, description: descrizione }),
+        body: JSON.stringify({ name: nome, category: categoria, position: posizione, description: descrizione, userId: loggedUser.id }),
     })
 };
-
+async function listaNegozi() {
+    listaNegozio.value = await (await fetch(SHOPS_URL +'/list/' + loggedUser.id, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })).json()
+   
+};
 async function deleteNegozio(negozio) {
+    console.log(negozio.self);
     await fetch(HOST + negozio.self, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' }
     })
-    fetchNegozio()
+
+    listaNegozi()
 };
 
 async function salvaNegozio(negozio) {
@@ -34,10 +42,12 @@ async function salvaNegozio(negozio) {
     negozioDaModificare.category = negozio.category
     negozioDaModificare.position = negozio.position
     negozioDaModificare.description = negozio.description
+    negozioDaModificare.userId = negozio.userId
 
 };
 
 async function modificaNegozio(nome, categoria, posizione, descrizione, ID) { //da rimettere async
+console.log(ID);
     fetch(HOST + ID, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -46,4 +56,4 @@ async function modificaNegozio(nome, categoria, posizione, descrizione, ID) { //
 };
 
 
-export { negozio, negozioDaModificare, fetchNegozio, createNegozio, deleteNegozio, salvaNegozio, modificaNegozio } 
+export { negozio, negozioDaModificare, fetchNegozio, createNegozio, deleteNegozio, salvaNegozio, modificaNegozio, listaNegozio, listaNegozi } 

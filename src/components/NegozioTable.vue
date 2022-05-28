@@ -1,25 +1,25 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { negozio, fetchNegozio, deleteNegozio, salvaNegozio } from '../states/shops.js'
-
+import { negozio, fetchNegozio, deleteNegozio, salvaNegozio, listaNegozi, listaNegozio } from '../states/shops.js'
+import { loggedUser } from '../states/users.js'
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 
 onMounted( () => {
-  fetchNegozio() // fetch on init
+  listaNegozi() // fetch on init
 })
 
 </script>
 
 <template>
-  <h1>Negozi registrati:</h1>
+  <h3>Negozi registrati dall'utente: {{loggedUser.email}}</h3>
 
   <ul>
-    <li v-for="negozio in negozio.value" :key="negozio.self">
-      <router-link to="/infoNegozio" @click="salvaNegozio(negozio)">{{negozio.name}}</router-link>
+    <li v-for="listaNegozio in listaNegozio.value" :key="listaNegozio.self">
+      <router-link to="/infoNegozio" @click="salvaNegozio(listaNegozio)">{{listaNegozio.name}}</router-link>
       -
-      <button @click="$router.push('/modificaNegozio'); salvaNegozio(negozio)">Modifica</button>
+      <button @click="$router.push('/modificaNegozio'); salvaNegozio(listaNegozio)">Modifica</button>
       -
-      <button @click="deleteNegozio(negozio)">Rimuovi</button>
+      <button @click="deleteNegozio(listaNegozio)">Rimuovi</button>
     </li>
   </ul>
 

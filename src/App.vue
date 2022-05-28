@@ -1,9 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import { cercaCarrello } from "@/states/carts.js";
+import { catalogoProdotto } from "@/states/products.js";
 import Login from "@/components/Login.vue";
 import { loggedUser } from "@/states/users.js";
-
+import { listaNegozi } from "@/states/shops.js";
 import { ref, computed } from "vue";
 
 const isLoggedIn = computed(() => loggedUser.account !== undefined);
@@ -21,8 +22,9 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/registrazione" v-if="!isLoggedIn || isAdmin">Registrazione</RouterLink>
         <RouterLink to="/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
-        <RouterLink to="/catalogo" v-if="isVenditore || isAdmin || isCliente ">Catalogo</RouterLink>
-        <RouterLink to="/negozio" v-if="isVenditore || isAdmin">Negozi</RouterLink>
+        <RouterLink to="/catalogo" v-if="!isVenditore || isAdmin || isCliente ">Catalogo</RouterLink>
+        <RouterLink to="/catalogoVenditore" @click="catalogoProdotto()" v-if="isVenditore">Catalogo</RouterLink>
+        <RouterLink to="/negozio" @click="listaNegozi()" v-if="isVenditore || isAdmin">Negozi</RouterLink>
         <RouterLink to="/ricerca" v-if="!isVenditore || isAdmin">Ricerca</RouterLink>
         <RouterLink to="/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello</RouterLink>
       </nav>
