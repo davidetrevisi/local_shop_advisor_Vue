@@ -53,7 +53,7 @@ function signupButton() {
     personal_street.value,
     personal_number.value,
   );
-  
+
   setTimeout(() => login(email.value, password.value), 2000);
 }
 
@@ -86,6 +86,10 @@ function pad(n, s = String(n)) {
 </script>
 
 <template>
+  <center>
+    <h1>Form registrazione</h1>
+  </center>
+  <br />
   <form>
     <select v-model="account">
       <option value="cliente">Cliente</option>
@@ -96,94 +100,25 @@ function pad(n, s = String(n)) {
     <input v-model="password" :class="{ red: isRed }" placeholder="Password" />
     <input v-model="name" :class="{ red: isRed }" placeholder="Nome" />
     <input v-model="surname" :class="{ red: isRed }" placeholder="Cognome" />
-    <input
-      v-model.number="phone"
-      :class="{ red: isRed }"
-      placeholder="Numero di telefono"
-    />
+    <input v-model.number="phone" :class="{ red: isRed }" placeholder="Numero di telefono" />
     <input type="date" v-model="birthdate" :class="{ red: isRed }" />
-    <input
-      v-model="payment"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Metodo di pagamento"
-    />
+    <input v-model="payment" :hidden="isVenditore" :class="{ red: isRed }" placeholder="Metodo di pagamento" />
     <div :hidden="isVenditore">Indirizzo di spedizione</div>
-    <input
-      v-model="shipping_city"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Città"
-    />
-    <input
-      v-model="shipping_CAP"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="CAP"
-    />
-    <input
-      v-model="shipping_street"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Via / Strada"
-    />
-    <input
-      v-model="shipping_number"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Civico"
-    />
+    <input v-model="shipping_city" :hidden="isVenditore" :class="{ red: isRed }" placeholder="Città" />
+    <input v-model="shipping_CAP" :hidden="isVenditore" :class="{ red: isRed }" placeholder="CAP" />
+    <input v-model="shipping_street" :hidden="isVenditore" :class="{ red: isRed }" placeholder="Via / Strada" />
+    <input v-model="shipping_number" :hidden="isVenditore" :class="{ red: isRed }" placeholder="Civico" />
     <div :hidden="isVenditore">Indirizzo di fatturazione</div>
-    <input
-      v-model="billing_city"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Città"
-    />
-    <input
-      v-model="billing_CAP"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="CAP"
-    />
-    <input
-      v-model="billing_street"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Via / Strada"
-    />
-    <input
-      v-model="billing_number"
-      :hidden="isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Civico"
-    />
+    <input v-model="billing_city" :hidden="isVenditore" :class="{ red: isRed }" placeholder="Città" />
+    <input v-model="billing_CAP" :hidden="isVenditore" :class="{ red: isRed }" placeholder="CAP" />
+    <input v-model="billing_street" :hidden="isVenditore" :class="{ red: isRed }" placeholder="Via / Strada" />
+    <input v-model="billing_number" :hidden="isVenditore" :class="{ red: isRed }" placeholder="Civico" />
 
     <div :hidden="!isVenditore">Indirizzo personale</div>
-    <input
-      v-model="personal_city"
-      :hidden="!isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Città"
-    />
-    <input
-      v-model="personal_CAP"
-      :hidden="!isVenditore"
-      :class="{ red: isRed }"
-      placeholder="CAP"
-    />
-    <input
-      v-model="personal_street"
-      :hidden="!isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Via / Strada"
-    />
-    <input
-      v-model="personal_number"
-      :hidden="!isVenditore"
-      :class="{ red: isRed }"
-      placeholder="Civico"
-    />
+    <input v-model="personal_city" :hidden="!isVenditore" :class="{ red: isRed }" placeholder="Città" />
+    <input v-model="personal_CAP" :hidden="!isVenditore" :class="{ red: isRed }" placeholder="CAP" />
+    <input v-model="personal_street" :hidden="!isVenditore" :class="{ red: isRed }" placeholder="Via / Strada" />
+    <input v-model="personal_number" :hidden="!isVenditore" :class="{ red: isRed }" placeholder="Civico" />
 
     <div />
     <button :disabled="!canRegister" type="button" @click="signupButton">

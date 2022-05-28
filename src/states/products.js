@@ -15,6 +15,7 @@ const prodottoCercato1 = reactive([])
 const prodottoDaModificare = reactive([])
 
 
+
 async function fetchProdotto() {
     prodotto.value = await (await fetch(PRODUCTS_URL)).json()
 }
@@ -41,7 +42,7 @@ async function cercaProdotto(nome) {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })).json()
-   
+
 };
 
 async function catalogoProdotto() {

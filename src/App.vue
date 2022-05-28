@@ -14,23 +14,32 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
 </script>
 
 <template>
+
+  <img alt="Vue logo" class="logo" src="@/assets/Logo2.png" width="150" />
+
+  <div class="log">
+
+    <Login />
+    <button v-if="!isLoggedIn || !isAdmin" @click="$router.push('/registrazione')">Registrati</button>
+
+  </div>
+
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/Logo2.png" width="100" />
+
+
+
 
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/registrazione" v-if="!isLoggedIn || isAdmin">Registrazione</RouterLink>
         <RouterLink to="/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
-        <RouterLink to="/catalogo" v-if="!isVenditore || isAdmin || isCliente ">Catalogo</RouterLink>
+        <RouterLink to="/catalogo">Catalogo</RouterLink>
         <RouterLink to="/catalogoVenditore" @click="catalogoProdotto()" v-if="isVenditore">Catalogo</RouterLink>
         <RouterLink to="/negozio" @click="listaNegozi()" v-if="isVenditore || isAdmin">Negozi</RouterLink>
-        <RouterLink to="/ricerca" v-if="!isVenditore || isAdmin">Ricerca</RouterLink>
         <RouterLink to="/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello</RouterLink>
       </nav>
-
-      <Login />
-      <h2>pagina di prova</h2>
+      <br />
+      <br />
     </div>
   </header>
 
@@ -41,7 +50,7 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
 @import "@/assets/base.css";
 
 #app {
-  max-width: 1280px;
+  max-width: 90%;
   margin: 0 auto;
   padding: 2rem;
 
@@ -51,11 +60,29 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
 header {
   line-height: 1.5;
   max-height: 100vh;
+  text-align: center;
 }
 
 .logo {
   display: block;
   margin: 0 auto 2rem;
+  position: absolute;
+}
+
+
+.log {
+
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  text-align: right;
+}
+
+.btn {
+  width: 10%;
+  float: right;
+  margin-top: 0.2em;
+  margin-left: 1rem;
+  pointer-events: none;
 }
 
 a,
@@ -73,7 +100,7 @@ a,
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 30px;
   text-align: center;
   margin-top: 2rem;
 }
@@ -96,6 +123,7 @@ nav a:first-of-type {
   border: 0;
 }
 
+/*
 @media (min-width: 1024px) {
   body {
     display: flex;
@@ -132,5 +160,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+}*/
 </style>

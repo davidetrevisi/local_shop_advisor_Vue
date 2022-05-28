@@ -1,40 +1,74 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, computed, reactive } from 'vue'
 import { loggedUser } from '../states/users.js'
-import { prodotto, fetchProdotto, deleteProdotto, salvaProdotto } from '../states/products.js'
+import { prodotto, fetchProdotto, deleteProdotto, salvaProdotto, prodottoCercato, cercaProdotto } from '../states/products.js'
 import { aggiungiCarrello } from '../states/carts.js'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
 const PRODUCTS_URL = API_URL + '/products'
+
+const cercato = ref('')
+const warningMessage = ref('')
 const quantity = ref("")
+const n = reactive([])
+const notN = computed(() => n.value === false);
+const isN = computed(() => n.value === true);
+
+n.value = false
+
+function cercaProdottoButton() {
+
+  n.value = true
+  console.log(n)
+  if (cercato.value == '') {
+    warningMessage.value = 'inserisci il prodotto da cercre'
+    return;
+  }
+  warningMessage.value = ''
+  cercaProdotto(cercato.value).catch(err => console.error(err));
+};
+
+
 onMounted(() => {
   fetchProdotto() // fetch on init
 })
 
+console.log(n)
+
 </script>
 
 <template>
-  <h1>Prodotti in catalogo:</h1>
+  <center>
+    <h1>Ricerca un prodotto nel catalogo</h1>
 
-  <ul>
-    <li v-for="prodotto in prodotto.value" :key="prodotto.self">
-      <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
-      <span v-if="loggedUser.account == 'Venditore'">
-      -    
-      <!--<input
-      v-model="quantity"
-      placeholder="Quantitá"
-      />
-      <br/>
-      -
-      <button @click="aggiungiCarrello(prodotto,quantity)">Aggiungi a carrello</button>
-      - -->
-      <button @click="$router.push('/modificaProdotto'); salvaProdotto(prodotto)">Modifica</button>
-      -
-      <button @click="deleteProdotto(prodotto)">Rimuovi</button>
-      </span>
-    </li>
-  </ul>
 
+    <br />
+
+    <input v-model="cercato" />
+    <button type="button" @click="cercaProdottoButton();">cerca</button>
+
+    <br />
+
+    <span style="color: red"> {{ warningMessage }} </span>
+  </center>
+
+  <form v-if="notN">
+    <h1>Prodotti in catalogo:</h1>
+
+    <ul>
+      <li v-for="prodotto in prodotto.value" :key="prodotto.self">
+        <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
+      </li>
+    </ul>
+  </form>
+
+  <form v-if="isN">
+    <h1>Prodotto ricercato:</h1>
+    <ul>
+      <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
+        <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
+      </li>
+    </ul>
+  </form>
 </template>

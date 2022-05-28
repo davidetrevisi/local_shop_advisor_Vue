@@ -11,12 +11,12 @@ const warningMessage = ref('')
 
 
 function cercaProdottoButton() {
-  if (cercato.value=='') {
+  if (cercato.value == '') {
     warningMessage.value = 'inserisci il prodotto da cercre'
     return;
   }
   warningMessage.value = ''
-  cercaProdotto(cercato.value).catch( err => console.error(err) );
+  cercaProdotto(cercato.value).catch(err => console.error(err));
 };
 
 
@@ -24,22 +24,25 @@ function cercaProdottoButton() {
 
 <template>
   <form>
-    <span>Ricerca un prodotto nel catalogo</span>
+    <center>
+      <h1>Ricerca un prodotto nel catalogo</h1>
 
-    <br />
 
-    <input v-model="cercato" />
-    <button type="button" @click="cercaProdottoButton()">cerca</button>
+      <br />
 
-    <br />
+      <input v-model="cercato" />
+      <button type="button" @click="cercaProdottoButton()">cerca</button>
 
-    <span style="color: red"> {{warningMessage}} </span>
+      <br />
 
-   <ul>
-    <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-      <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{prodottoCercato.name}}</router-link>
-    </li>
-   </ul>
+      <span style="color: red"> {{ warningMessage }} </span>
+    </center>
+
+    <ul>
+      <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
+        <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
+      </li>
+    </ul>
 
   </form>
 </template>
