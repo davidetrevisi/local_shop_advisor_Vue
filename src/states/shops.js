@@ -6,11 +6,8 @@ const SHOPS_URL = API_URL + '/shops'
 
 const negozio = reactive([])
 const listaNegozio = reactive([])
-const negozioDaModificare = reactive([])
+const negoziosingolo = reactive([])
 
-async function fetchNegozio() {
-    negozio.value = await (await fetch(SHOPS_URL)).json()
-}
 
 async function createNegozio(nome, categoria, posizione, descrizione) { //da rimettere async
     fetch(SHOPS_URL, {
@@ -38,15 +35,12 @@ async function deleteNegozio(negozio) {
 
     listaNegozi()
 };
-
-async function salvaNegozio(negozio) {
-    negozioDaModificare.self = negozio.self
-    negozioDaModificare.name = negozio.name
-    negozioDaModificare.category = negozio.category
-    negozioDaModificare.position = negozio.position
-    negozioDaModificare.description = negozio.description
-    negozioDaModificare.userId = negozio.userId
-
+async function dettagliNegozio(id) {
+    negoziosingolo.value = await (await fetch(SHOPS_URL + '/' + id, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })).json()
+    console.log(id)
 };
 
 async function modificaNegozio(nome, categoria, posizione, descrizione, ID) { //da rimettere async
@@ -60,4 +54,4 @@ async function modificaNegozio(nome, categoria, posizione, descrizione, ID) { //
 };
 
 
-export { negozio, negozioDaModificare, fetchNegozio, createNegozio, deleteNegozio, salvaNegozio, modificaNegozio, listaNegozio, listaNegozi } 
+export { negozio, negoziosingolo, dettagliNegozio, createNegozio, deleteNegozio, modificaNegozio, listaNegozio, listaNegozi } 

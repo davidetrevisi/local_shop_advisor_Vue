@@ -1,8 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { loggedUser } from '../states/users.js'
-import { prodotto, fetchProdotto, deleteProdotto, salvaProdotto, catalogoProdotto, prodottoCercato } from '../states/products.js'
-import { aggiungiCarrello } from '../states/carts.js'
+import { prodotto, deleteProdotto, catalogoProdotto, prodottoCercato, dettagliProdotto } from '../states/products.js'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
@@ -19,13 +18,12 @@ onMounted(() => {
 
   <ul>
     <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-      <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
+      <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{prodottoCercato.name}}</router-link>
       <span v-if="loggedUser.account == 'Venditore'">
-        -
-        <button class="btn2"
-          @click="$router.push('/modificaProdotto'); salvaProdotto(prodottoCercato)">Modifica</button>
-        -
-        <button class="btn2" @click="deleteProdotto(prodottoCercato)">Rimuovi</button>
+      -    
+      <button class="btn2" @click="$router.push('/modificaProdotto'); dettagliProdotto(prodottoCercato.id)">Modifica</button>
+      -
+      <button class="btn2" @click="deleteProdotto(prodottoCercato)">Rimuovi</button>
       </span>
     </li>
   </ul>

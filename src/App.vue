@@ -1,17 +1,22 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
 import { cercaCarrello } from "@/states/carts.js";
-import { catalogoProdotto } from "@/states/products.js";
+import { fetchProdotto, catalogoProdotto } from "@/states/products.js";
 import Login from "@/components/Login.vue";
 import { loggedUser, logout } from "@/states/users.js";
 import { listaNegozi } from "@/states/shops.js";
-import { ref, computed } from "vue";
+import { listaOrdini, listaOrdiniVenditore } from "@/states/orders.js";
+import { ref, computed, onBeforeMount } from "vue";
 import MappaTable from "./components/MappaTable.vue";
 
 const isLoggedIn = computed(() => loggedUser.account !== undefined);
 const isVenditore = computed(() => loggedUser.account === "Venditore");
 const isCliente = computed(() => loggedUser.account === "Cliente");
 const isAdmin = computed(() => loggedUser.account === "Admin");
+onBeforeMount( () => {
+fetchProdotto()
+  cercaCarrello()
+})
 </script>
 
 <template>
@@ -42,7 +47,9 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
-        <RouterLink to="/catalogo" v-if="!isVenditore">Catalogo</RouterLink>
+        <RouterLink to="/catalogo" @click="fetchProdotto()" v-if="!isVenditore">Catalogo</RouterLink>
+        <RouterLink to="/ordini" @click="listaOrdini()" v-if="isCliente">Ordini</RouterLink>
+        <RouterLink to="/ordiniVenditore" @click="listaOrdiniVenditore()" v-if="isVenditore">Ordini</RouterLink>
         <RouterLink to="/catalogoVenditore" @click="catalogoProdotto()" v-if="isVenditore">Catalogo</RouterLink>
         <RouterLink to="/negozio" @click="listaNegozi()" v-if="isVenditore || isAdmin">Negozi</RouterLink>
         <RouterLink to="/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello</RouterLink>

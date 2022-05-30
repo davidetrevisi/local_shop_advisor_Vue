@@ -1,8 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, reactive } from 'vue'
-import { loggedUser } from '../states/users.js'
-import { prodotto, fetchProdotto, deleteProdotto, salvaProdotto, prodottoCercato, cercaProdotto } from '../states/products.js'
-import { aggiungiCarrello } from '../states/carts.js'
+import { prodotto, fetchProdotto, prodottoCercato, cercaProdotto, dettagliProdotto } from '../states/products.js'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
@@ -58,7 +56,7 @@ console.log(n)
 
     <ul>
       <li v-for="prodotto in prodotto.value" :key="prodotto.self">
-        <router-link to="/prodotto" @click="salvaProdotto(prodotto)">{{ prodotto.name }}</router-link>
+        <router-link to="/prodotto" @click="dettagliProdotto(prodotto.id)">{{ prodotto.name }}</router-link>
       </li>
     </ul>
   </form>
@@ -67,7 +65,7 @@ console.log(n)
     <h1>Prodotto ricercato:</h1>
     <ul>
       <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-        <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
+        <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{ prodottoCercato.name }}</router-link>
       </li>
     </ul>
   </form>

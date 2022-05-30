@@ -11,8 +11,7 @@ const PRODUCTS_URL = API_URL + '/products'
 const prodotto = reactive([])
 
 const prodottoCercato = reactive([])
-const prodottoCercato1 = reactive([])
-const prodottoDaModificare = reactive([])
+const prodottosingolo = reactive([])
 
 
 
@@ -54,16 +53,13 @@ async function catalogoProdotto() {
     })).json()
 
 };
-async function salvaProdotto(prodotto) {
-    prodottoDaModificare.self = prodotto.self
-    prodottoDaModificare.id = prodotto.id
-    prodottoDaModificare.name = prodotto.name
-    prodottoDaModificare.description = prodotto.description
-    prodottoDaModificare.price = prodotto.price
-    prodottoDaModificare.category = prodotto.category
-    prodottoDaModificare.userId = prodotto.userId
+async function dettagliProdotto(id) {
+    prodottosingolo.value = await (await fetch(PRODUCTS_URL + '/' + id, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })).json()
+    console.log(id)
 };
-
 
 async function modificaProdotto(nome, categoria, prezzo, descrizione, ID) { //da rimettere async
     console.log(ID);
@@ -78,4 +74,4 @@ async function modificaProdotto(nome, categoria, prezzo, descrizione, ID) { //da
 };
 
 
-export { prodotto, prodottoCercato, prodottoCercato1, prodottoDaModificare, catalogoProdotto, fetchProdotto, createProdotto, deleteProdotto, cercaProdotto, salvaProdotto, modificaProdotto } 
+export { prodotto, prodottoCercato, prodottosingolo, catalogoProdotto, fetchProdotto, createProdotto, deleteProdotto, cercaProdotto, modificaProdotto, dettagliProdotto } 

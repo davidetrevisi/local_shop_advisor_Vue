@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { prodottoCercato, cercaProdotto, salvaProdotto } from '../states/products.js'
+import { prodottoCercato, cercaProdotto, dettagliProdotto } from '../states/products.js'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
@@ -40,7 +40,7 @@ function cercaProdottoButton() {
 
     <ul>
       <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-        <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
+        <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
       </li>
     </ul>
 

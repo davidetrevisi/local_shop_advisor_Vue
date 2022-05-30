@@ -1,12 +1,12 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { negozioDaModificare, modificaNegozio } from '../states/shops.js'
+import { negoziosingolo, modificaNegozio } from '../states/shops.js'
 
 
-const name = ref(negozioDaModificare.name)
-const category = ref(negozioDaModificare.category)
-const position = ref(negozioDaModificare.position)
-const description = ref(negozioDaModificare.description)
+const name = ref(negoziosingolo.value.name)
+const category = ref(negoziosingolo.value.category)
+const position = ref(negoziosingolo.value.position)
+const description = ref(negoziosingolo.value.description)
 const warningMessage = ref('')
 
 
@@ -27,9 +27,9 @@ function modificaNegozioButton(ID) {
     <input v-model="category" />
     <input v-model="position" />
     <input v-model="description" />
-    <button type="button" @click="modificaNegozioButton(negozioDaModificare.self)">modifica</button>
+    <button type="button" @click="modificaNegozioButton(negoziosingolo.value.self)">modifica</button>
     <br />
-    <span style="color: red"> {{negozioDaModificare.self}} </span>
+    <span style="color: red"> {{negoziosingolo.value.self}} </span>
     <span style="color: red"> {{warningMessage}} </span>
   </form>
 </template>
