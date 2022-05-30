@@ -20,7 +20,7 @@ const isAdmin = computed(() => loggedUser.account === "Admin");
   <div class="log">
 
     <Login />
-    <button v-if="!isLoggedIn || !isAdmin" @click="$router.push('/registrazione')">Registrati</button>
+    <button v-if="loggedUser.account == undefined" @click="$router.push('/registrazione')">Registrati</button>
 
   </div>
 
