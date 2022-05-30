@@ -1,7 +1,7 @@
 import { reactive, ref, onMounted, watch } from "vue";
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`;
-const API_URL = HOST + `/api/v1`;
+const API_URL = HOST + `/api/v2`;
 
 
 const loggedUser = reactive({

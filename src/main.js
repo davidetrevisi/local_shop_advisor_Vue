@@ -8,7 +8,7 @@ const app = createApp(App)
 
 app.use(VueGoogleMaps, {
     load: {
-        key: 'AIzaSyCHC1DUCljA12A8Nm0SkgJHsXB0N8p1ocY',
+        key: '',
     },
 });
 

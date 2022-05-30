@@ -4,7 +4,7 @@ import { reactive } from 'vue'
 import { loggedUser } from './users'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
-const API_URL = HOST + `/api/v1`
+const API_URL = HOST + `/api/v2`
 const PRODUCTS_URL = API_URL + '/products'
 
 
@@ -23,6 +23,7 @@ async function fetchProdotto() {
 async function createProdotto(nome, categoria, prezzo, descrizione) { //da rimettere async
     fetch(PRODUCTS_URL, {
         method: 'POST',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: nome, category: categoria, price: prezzo, description: descrizione, userId: loggedUser.id }),
     })
@@ -32,6 +33,7 @@ async function createProdotto(nome, categoria, prezzo, descrizione) { //da rimet
 async function deleteProdotto(prodotto) {
     await fetch(HOST + prodotto.self, {
         method: 'DELETE',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' }
     })
     catalogoProdotto()
@@ -46,11 +48,11 @@ async function cercaProdotto(nome) {
 };
 
 async function catalogoProdotto() {
-    prodottoCercato.value = await (await fetch(PRODUCTS_URL +'/catalog/' + loggedUser.id, {
+    prodottoCercato.value = await (await fetch(PRODUCTS_URL + '/catalog/' + loggedUser.id, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
     })).json()
-   
+
 };
 async function salvaProdotto(prodotto) {
     prodottoDaModificare.self = prodotto.self
@@ -67,6 +69,7 @@ async function modificaProdotto(nome, categoria, prezzo, descrizione, ID) { //da
     console.log(ID);
     fetch(HOST + ID, {
         method: 'PUT',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: nome, category: categoria, price: prezzo, description: descrizione }),
     })
