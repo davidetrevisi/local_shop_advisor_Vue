@@ -3,7 +3,10 @@ import paginaMappa from '@/components/MappaTable.vue'
 </script>
 
 <template>
-  <main>
-    <paginaMappa />
-  </main>
+    <div>
+        <paginaMappa />
+    </div>
 </template>
+
+<style>
+</style>

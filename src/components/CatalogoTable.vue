@@ -45,8 +45,8 @@ console.log(n)
 
     <br />
 
-    <input v-model="cercato" />
-    <button type="button" @click="cercaProdottoButton();">cerca</button>
+    <input v-model="cercato" placeholder="cerca" />
+    <button class="btn2" type="button" @click="cercaProdottoButton();">cerca</button>
 
     <br />
 

@@ -121,7 +121,7 @@ function pad(n, s = String(n)) {
     <input v-model="personal_number" :hidden="!isVenditore" :class="{ red: isRed }" placeholder="Civico" />
 
     <div />
-    <button :disabled="!canRegister" type="button" @click="signupButton">
+    <button class="btn2" :disabled="!canRegister" type="button" @click="signupButton">
       Registrati
     </button>
     <p>{{ canRegister ? "" : "Alcuni parametri sono errati." }}</p>

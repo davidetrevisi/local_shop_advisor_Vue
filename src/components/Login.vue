@@ -14,9 +14,9 @@ function loginButton() {
 
 <template>
   <form>
-    <input v-model="email" placeholder="Email"/>
-    <input v-model="password" placeholder="Password"/>
-    <button type="button" @click="loginButton">LogIn</button>
-    <button type="button" @click="logout" v-if="loggedUser.id !== undefined">LogOut</button>
+    <input v-model="email" placeholder="Email" />
+    <input v-model="password" placeholder="Password" />
+    <button class="btn" style="margin-left: 1rem ;" type="button"
+      @click="loginButton(); $router.push('/')">LogIn</button>
   </form>
 </template>

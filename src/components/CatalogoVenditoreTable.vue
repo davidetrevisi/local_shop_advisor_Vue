@@ -15,16 +15,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <h3>Prodotti nel catalogo del venditore: {{ loggedUser.email}}</h3>
+  <h3>Prodotti nel catalogo del venditore: {{ loggedUser.email }}</h3>
 
   <ul>
     <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-      <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{prodottoCercato.name}}</router-link>
+      <router-link to="/prodotto" @click="salvaProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
       <span v-if="loggedUser.account == 'Venditore'">
-      -    
-      <button @click="$router.push('/modificaProdotto'); salvaProdotto(prodottoCercato)">Modifica</button>
-      -
-      <button @click="deleteProdotto(prodottoCercato)">Rimuovi</button>
+        -
+        <button class="btn2"
+          @click="$router.push('/modificaProdotto'); salvaProdotto(prodottoCercato)">Modifica</button>
+        -
+        <button class="btn2" @click="deleteProdotto(prodottoCercato)">Rimuovi</button>
       </span>
     </li>
   </ul>
