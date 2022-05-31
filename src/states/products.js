@@ -19,14 +19,15 @@ async function fetchProdotto() {
     prodotto.value = await (await fetch(PRODUCTS_URL)).json()
 }
 
-async function createProdotto(nome, categoria, prezzo, descrizione) { //da rimettere async
+async function createProdotto(nome, categoria, prezzo, descrizione, negozio) { //da rimettere async
     fetch(PRODUCTS_URL, {
         method: 'POST',
         credentials: "include",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: nome, category: categoria, price: prezzo, description: descrizione, userId: loggedUser.id }),
+        body: JSON.stringify({ name: nome, category: categoria, price: prezzo, description: descrizione, userId: loggedUser.id/*, shopId: negozio*/ }),
     })
     fetchProdotto()
+    console.log(loggedUser.id)
 };
 
 async function deleteProdotto(prodotto) {
@@ -49,8 +50,10 @@ async function cercaProdotto(nome) {
 async function catalogoProdotto() {
     prodottoCercato.value = await (await fetch(PRODUCTS_URL + '/catalog/' + loggedUser.id, {
         method: 'GET',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' }
     })).json()
+    console.log("fatto")
 
 };
 async function dettagliProdotto(id) {

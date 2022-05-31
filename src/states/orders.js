@@ -8,7 +8,7 @@ const ORDERS_URL = API_URL + '/orders'
 const ordine = reactive([])
 const ordinesingolo = reactive([])
 const ordinev = reactive([])
-var stato= "In preparazione";
+var stato = "In preparazione";
 
 
 
@@ -16,7 +16,7 @@ async function aggiungiOrdine() {
     await fetch(ORDERS_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ customerId: loggedUser.id, status: stato}),
+        body: JSON.stringify({ customerId: loggedUser.id, status: stato }),
     })
     svuotaCarrello();
 }
@@ -52,4 +52,4 @@ async function modificaStato(stato, ID) {
 
 
 
-export { ordine, ordinev, aggiungiOrdine, listaOrdini, listaOrdiniVenditore, modificaStato, dettagliOrdine, ordinesingolo} 
+export { ordine, ordinev, aggiungiOrdine, listaOrdini, listaOrdiniVenditore, modificaStato, dettagliOrdine, ordinesingolo } 

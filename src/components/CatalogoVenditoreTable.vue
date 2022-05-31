@@ -7,6 +7,7 @@ const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
 const PRODUCTS_URL = API_URL + '/products'
 const quantity = ref("")
+
 onMounted(() => {
   catalogoProdotto() // fetch on init
 })
@@ -18,12 +19,13 @@ onMounted(() => {
 
   <ul>
     <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-      <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{prodottoCercato.name}}</router-link>
+      <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{ prodottoCercato.name }}</router-link>
       <span v-if="loggedUser.account == 'Venditore'">
-      -    
-      <button class="btn2" @click="$router.push('/modificaProdotto'); dettagliProdotto(prodottoCercato.id)">Modifica</button>
-      -
-      <button class="btn2" @click="deleteProdotto(prodottoCercato)">Rimuovi</button>
+        -
+        <button class="btn2"
+          @click="$router.push('/modificaProdotto'); dettagliProdotto(prodottoCercato.id)">Modifica</button>
+        -
+        <button class="btn2" @click="deleteProdotto(prodottoCercato)">Rimuovi</button>
       </span>
     </li>
   </ul>
