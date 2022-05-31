@@ -56,6 +56,13 @@ async function catalogoProdotto() {
     console.log("fatto")
 
 };
+async function catalogoProdottoNegozio(id) {
+    prodottoCercato.value = await (await fetch(PRODUCTS_URL + '/shop/' + id, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })).json()
+
+};
 async function dettagliProdotto(id) {
     prodottosingolo.value = await (await fetch(PRODUCTS_URL + '/' + id, {
         method: 'GET',
@@ -77,4 +84,4 @@ async function modificaProdotto(nome, categoria, prezzo, descrizione, ID) { //da
 };
 
 
-export { prodotto, prodottoCercato, prodottosingolo, catalogoProdotto, fetchProdotto, createProdotto, deleteProdotto, cercaProdotto, modificaProdotto, dettagliProdotto } 
+export { prodotto, prodottoCercato, prodottosingolo, catalogoProdotto, fetchProdotto, createProdotto, deleteProdotto, cercaProdotto, modificaProdotto, dettagliProdotto, catalogoProdottoNegozio } 
