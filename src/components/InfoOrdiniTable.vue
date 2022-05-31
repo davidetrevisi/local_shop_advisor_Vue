@@ -42,6 +42,6 @@ console.log(ordinesingolo)
     />
   </span>  
   <br />
-  <button @click="modificaStato(status, ordinesingolo.value.self)" v-if="loggedUser.account == 'Venditore'">Modifica Stato</button>
+  <button class="btn2" @click="modificaStato(status, ordinesingolo.value.self)" v-if="loggedUser.account == 'Venditore'">Modifica Stato</button>
 
 </template>
