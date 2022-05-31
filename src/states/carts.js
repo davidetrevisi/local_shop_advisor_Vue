@@ -31,6 +31,7 @@ async function eliminaCarrello(id) {
 async function svuotaCarrello(id) {
     await fetch(CARTS_URL+ '/'+ loggedUser.id, {
         method: 'DELETE',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
     })
     cercaCarrello()

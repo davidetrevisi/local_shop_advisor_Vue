@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 import { loggedUser } from '../states/users.js'
+import { catalogoProdottoNegozio } from './products.js'
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v2`
 const SHOPS_URL = API_URL + '/shops'
@@ -38,8 +39,10 @@ async function deleteNegozio(negozio) {
 async function dettagliNegozio(id) {
     negoziosingolo.value = await (await fetch(SHOPS_URL + '/' + id, {
         method: 'GET',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' }
     })).json()
+    catalogoProdottoNegozio(negoziosingolo.value.id)
     console.log(id)
 };
 
