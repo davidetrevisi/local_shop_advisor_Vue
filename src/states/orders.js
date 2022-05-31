@@ -15,6 +15,7 @@ var stato= "In preparazione";
 async function aggiungiOrdine() {
     await fetch(ORDERS_URL, {
         method: 'POST',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ customerId: loggedUser.id, status: stato}),
     })
@@ -24,12 +25,14 @@ async function aggiungiOrdine() {
 async function listaOrdini() {
     ordine.value = await (await fetch(ORDERS_URL + '/catalog/' + loggedUser.id, {
         method: 'GET',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' }
     })).json()
 };
 async function dettagliOrdine(id) {
     ordinesingolo.value = await (await fetch(ORDERS_URL + '/' + id, {
         method: 'GET',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' }
     })).json()
     console.log(id)
@@ -38,12 +41,14 @@ async function dettagliOrdine(id) {
 async function listaOrdiniVenditore() {
     ordinev.value = await (await fetch(ORDERS_URL + '/catalogv/' + loggedUser.id, {
         method: 'GET',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' }
     })).json()
 };
 async function modificaStato(stato, ID) {
     fetch(HOST + ID, {
         method: 'PUT',
+        credentials: "include",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: stato }),
     })
