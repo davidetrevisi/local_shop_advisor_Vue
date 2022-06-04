@@ -18,7 +18,7 @@ console.log(ordinesingolo)
   <ul>
       
         <li v-for="item in ordinesingolo.value.items" :key="item.value">
-            <h3>Prodotto: {{ ( prodotto.value.find(p=>p.id==item.productId) || {name: 'unknown'} ).name}}</h3>
+            <h3>Prodotto: {{ ( prodotto.value.find(p=>p.id==item?.productId) || {name: 'unknown'} ).name}}</h3>
             <h3>Prezzo: {{ item.price }} €</h3>
             <h3>Quantitá: {{ item.quantity }}</h3>
             <h3>Parziale: {{ item.total }} €</h3>

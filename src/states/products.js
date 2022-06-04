@@ -2,7 +2,6 @@
 
 import { reactive } from 'vue'
 import { loggedUser } from './users'
-
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v2`
 const PRODUCTS_URL = API_URL + '/products'
