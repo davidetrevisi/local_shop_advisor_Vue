@@ -16,13 +16,12 @@ const isN = computed(() => n.value === true);
 n.value = false
 
 function cercaProdottoButton() {
-
-  n.value = true
   console.log(n)
   if (cercato.value == '') {
     warningMessage.value = 'inserisci il prodotto da cercre'
     return;
   }
+  n.value = true
   warningMessage.value = ''
   cercaProdotto(cercato.value).catch(err => console.error(err));
 };
@@ -65,7 +64,8 @@ console.log(n)
     <h1>Prodotto ricercato:</h1>
     <ul>
       <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-        <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{ prodottoCercato.name }}</router-link>
+        <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{ prodottoCercato.name }}
+        </router-link>
       </li>
     </ul>
   </form>

@@ -6,9 +6,10 @@ const quantity = ref("")
 </script>
 
 <template>
-    <h1>{{ loggedUser.account }}</h1>
+    <h1>Profilo</h1>
     <br />
-    <h3>Tipo account: {{ loggedUser.email }}</h3>
+    <h3>Tipo account: {{ loggedUser.account }}</h3>
     <br />
+    <h3>Email: {{ loggedUser.email }}</h3>
 
 </template>

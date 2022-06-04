@@ -17,7 +17,8 @@ onMounted(() => {
     <li v-for="listaNegozio in listaNegozio.value" :key="listaNegozio.self">
       <router-link to="/infoNegozio" @click="dettagliNegozio(listaNegozio.id)">{{listaNegozio.name}}</router-link>
       -
-      <button class="btn2" @click="$router.push('/modificaNegozio'); dettagliNegozio(listaNegozio.id)">Modifica</button>
+      <button class="btn2"
+        @click=" dettagliNegozio(listaNegozio.id); $router.push('/modificaNegozio')">Modifica</button>
       -
       <button class="btn2" @click="deleteNegozio(listaNegozio)">Rimuovi</button>
     </li>

@@ -24,6 +24,21 @@ onMounted(() => {
   listaNegozi() // fetch on init
 })
 
+function clear() {
+  name = ref("")
+  category = ref('')
+  price = ref('')
+  description = ref('')
+  warningMessage = ref('')
+
+  name1 = ref('')
+  category1 = ref('')
+  position = ref('')
+  description1 = ref('')
+  warningMessage1 = ref('')
+  scelta = ref('')
+}
+
 function createProdottoButton() {
   if (name.value == '' || category.value == '' || price.value == '' || description.value == '') {
     warningMessage.value = 'Please specify valid items!'
@@ -34,6 +49,7 @@ function createProdottoButton() {
   //console.log(negoziosingolo.id)
   warningMessage.value = ''
   createProdotto(name.value, category.value, price.value, description.value, scelta.value).catch(err => console.error(err));
+  clear();
 };
 
 
@@ -44,6 +60,7 @@ function createNegozioButton() {
   }
   warningMessage1.value = ''
   createNegozio(name1.value, category1.value, position.value, description1.value).catch(err => console.error(err));
+  clear();
 };
 
 </script>

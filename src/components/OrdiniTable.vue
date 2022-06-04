@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { loggedUser } from '../states/users.js'
-import {  ordine, listaOrdini, dettagliOrdine } from '../states/orders.js'
+import { ordine, listaOrdini, dettagliOrdine } from '../states/orders.js'
 
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 const API_URL = HOST + `/api/v1`
@@ -13,11 +13,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <h3>Ordini effettuati dal cliente: {{ loggedUser.email}}</h3>
+  <h2>Ordini effettuati dal cliente: {{ loggedUser.email }}</h2>
+  <h4 style="margin-left: 1.5rem;">(Dal meno recente al più recente)</h4>
+  <br />
 
   <ul>
     <li v-for="ordine in ordine.value" :key="ordine.self">
-   <router-link to="/infoordini" @click="dettagliOrdine(ordine.id)">{{ordine.id}}</router-link>
+      <router-link to="/infoordini" @click="dettagliOrdine(ordine.id)">{{ ordine.id }}</router-link>
     </li>
   </ul>
 
