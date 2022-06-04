@@ -19,15 +19,31 @@ async function fetchProdotto() {
     prodotto.value = await (await fetch(PRODUCTS_URL)).json()
 }
 
-async function createProdotto(nome, categoria, prezzo, descrizione, negozio) { //da rimettere async
+async function createProdotto(nome, categoria, prezzo, descrizione, tags, images, negozio) { //da rimettere async
+    var formData = new FormData();
+    formData.append("name", nome);
+    formData.append("category", categoria);
+    formData.append("price", prezzo);
+    formData.append("description", descrizione);
+    console.log(tags);
+    for (const i of Object.keys(tags)) {
+        formData.append("tags", tags[i]);
+    }
+    for (const i of Object.keys(images)) {
+        formData.append("images", images[i]);
+    }
+    formData.append("userId", loggedUser.id);
+    formData.append("shopId", negozio);
+    
     fetch(PRODUCTS_URL, {
         method: 'POST',
         credentials: "include",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: nome, category: categoria, price: prezzo, description: descrizione, userId: loggedUser.id, shopId: negozio }),
+        //headers: { 'Content-Type': 'application/json' },
+        //body: JSON.stringify({ name: nome, category: categoria, price: prezzo, description: descrizione, userId: loggedUser.id, shopId: negozio }),
+        body: formData,
     })
     fetchProdotto()
-    console.log(loggedUser.id)
+    //console.log(loggedUser.id)
 };
 
 async function deleteProdotto(prodotto) {
