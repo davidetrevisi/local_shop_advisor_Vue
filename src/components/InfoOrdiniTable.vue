@@ -19,7 +19,8 @@ console.log(ordinesingolo)
 
     <li v-for="item in ordinesingolo.value.items" :key="item.value">
      <!-- <h3>Prodotto: {{ (prodotto.value.find(p => p.id == item?.productId) || { name: 'unknown' }).name }}</h3>-->
-      <h3>Nome: {{ item?.productId?.name }}</h3>
+      <h3 v-if="item.productId?.name !== undefined">Nome: {{item?.productId?.name}}</h3>
+      <h3 v-if="item.productId?.name === undefined" style="color: red" >Prodotto eliminato dal catalogo</h3>
       <h3>Prezzo: {{ item.price }} €</h3>
       <h3>Quantitá: {{ item.quantity }}</h3>
       <h3>Parziale: {{ item.total }} €</h3>
