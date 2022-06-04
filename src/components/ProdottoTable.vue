@@ -16,6 +16,16 @@ console.log(prodottosingolo)
   <br />
   <h3>Descrizione: {{ prodottosingolo.value.description }}</h3>
   <br />
+  <h3>Tags:</h3>
+  <div v-for="h in prodottosingolo.value.tags">
+    <h3>{{ h }}</h3>
+  </div>
+  <br />
+  <h3>Immagini:</h3>
+  <div v-for="h in prodottosingolo.value.images">
+    <img :src="'http://localhost:8080/' + h" width="200">
+  </div>
+  <br />
   <span v-if="loggedUser.account == 'Cliente'">Inserisci la quantitá da aggiungere al carrello
   <br />
       <input
