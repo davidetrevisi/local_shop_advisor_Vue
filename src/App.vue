@@ -15,7 +15,6 @@ const isCliente = computed(() => loggedUser.account === "Cliente");
 const isAdmin = computed(() => loggedUser.account === "Admin");
 onBeforeMount( () => {
 fetchProdotto()
-  cercaCarrello()
 })
 </script>
 
