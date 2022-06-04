@@ -3,16 +3,14 @@ import { ref, onMounted, watch } from 'vue'
 import { negoziosingolo, modificaNegozio } from '../states/shops.js'
 
 
-const name = ref(negoziosingolo.value.name)
-const category = ref(negoziosingolo.value.category)
-const position = ref(negoziosingolo.value.position)
-const description = ref(negoziosingolo.value.description)
+
 const warningMessage = ref('')
 
 
 function modificaNegozioButton(ID) {
   warningMessage.value = ''
-  modificaNegozio(name.value, category.value, position.value, description.value, ID).catch( err => console.error(err) );
+  modificaNegozio(negoziosingolo.value.name, negoziosingolo.value.category, negoziosingolo.value.position, negoziosingolo.value.description, ID)
+    .catch(err => console.error(err));
 };
 
 </script>
@@ -23,13 +21,14 @@ function modificaNegozioButton(ID) {
   <form>
     <span>Modifica il negozio</span>
     <br />
-    <input v-model="name" />
-    <input v-model="category" />
-    <input v-model="position" />
-    <input v-model="description" />
-    <button type="button" @click="modificaNegozioButton(negoziosingolo.value.self)">modifica</button>
+    <input v-model="negoziosingolo.value.name" />
+    <input v-model="negoziosingolo.value.category" />
+    <input v-model="negoziosingolo.value.position" />
+    <input v-model="negoziosingolo.value.description" />
+    <button class="btn2" style="margin-left: 0.5em;" type="button"
+      @click="modificaNegozioButton(negoziosingolo.value.self); $router.push('/negozio')">modifica</button>
     <br />
-    <span style="color: red"> {{negoziosingolo.value.self}} </span>
-    <span style="color: red"> {{warningMessage}} </span>
+    <span style="color: red"> {{ negoziosingolo.value.self }} </span>
+    <span style="color: red"> {{ warningMessage }} </span>
   </form>
 </template>

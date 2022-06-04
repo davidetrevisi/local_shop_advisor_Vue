@@ -13,6 +13,17 @@ import { catalogoProdottoNegozio, dettagliProdotto,prodottoCercato1 } from '../s
   <h3>position: {{ negoziosingolo.value.position }}</h3>
   <br />
   <h3>Descrizione: {{ negoziosingolo.value.description }}</h3>
+  <br />
+  <h3>Tags:</h3>
+  <div v-for="h in negoziosingolo.value.tags">
+    <h3>{{ h }}</h3>
+  </div>
+  <br />
+  <h3>Immagini:</h3>
+  <div v-for="h in negoziosingolo.value.images">
+    <img :src="'http://localhost:8080/' + h" width="200">
+  </div>
+  <br />
   <h3>Prodotti in catalogo del negozio:</h3>
   
     <ul>

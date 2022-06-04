@@ -11,8 +11,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  base: process.env.BASE_PATH || '/'
-  // base: process.env.NODE_ENV === 'production'
-  //         ? '/EasyLibApp/' // prod
-  //         : '/', // dev
+  base: process.env.BASE_PATH || '/',
+  publicPath: process.env.NODE_ENV === 'production'
+          ? '/local_shop_advisor_Hosting/' // prod
+          : '/', // dev
 })

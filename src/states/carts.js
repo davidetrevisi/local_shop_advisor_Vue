@@ -28,7 +28,7 @@ async function eliminaCarrello(id) {
     })
     cercaCarrello()
 }
-async function svuotaCarrello(id) {
+async function svuotaCarrello() {
     await fetch(CARTS_URL + '/' + loggedUser.id, {
         method: 'DELETE',
         credentials: "include",
