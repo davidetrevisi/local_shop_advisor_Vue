@@ -3,6 +3,8 @@ import { reactive, ref, onMounted, watch } from "vue";
 const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`;
 const API_URL = HOST + `/api/v2`;
 
+const utenteCercato = reactive([])
+
 
 const loggedUser = reactive({
   account: undefined,
@@ -29,7 +31,7 @@ async function login(email, password) {
   fetch(API_URL + "/authentications/login", {
     method: "POST",
     credentials: "include",
-    headers: { "Content-Type": "application/json", Accept: "application/json", 'Access-Control-Allow-Origin': 'https://davidetrevisi.github.io',},
+    headers: { "Content-Type": "application/json", Accept: "application/json", 'Access-Control-Allow-Origin': 'https://davidetrevisi.github.io', },
     body: JSON.stringify({ email: email, password: password }),
   })
     .then((res) => res.json())
@@ -131,4 +133,13 @@ async function signup(
   }
 }
 
-export { loggedUser, setLoggedUser, clearLoggedUser, login, logout, signup };
+async function cercaUtente() {
+  utenteCercato.value = await (await fetch(API_URL + "/users/" + loggedUser.id, {
+    method: 'GET',
+    credentials: "include",
+    headers: { 'Content-Type': 'application/json' }
+  })).json()
+
+};
+
+export { loggedUser, utenteCercato, setLoggedUser, clearLoggedUser, login, logout, signup, cercaUtente };
