@@ -21,7 +21,7 @@ import { catalogoProdottoNegozio, dettagliProdotto,prodottoCercato1 } from '../s
   <br />
   <h3>Immagini:</h3>
   <div v-for="h in negoziosingolo.value.images">
-    <img :src="'http://localhost:8080/' + h" width="200">
+    <img :src="'https://local-shop-advisor.herokuapp.com/' + h" width="200">
   </div>
   <br />
   <h3>Prodotti in catalogo del negozio:</h3>

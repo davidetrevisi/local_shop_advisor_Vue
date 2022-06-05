@@ -29,7 +29,7 @@ async function login(email, password) {
   fetch(API_URL + "/authentications/login", {
     method: "POST",
     credentials: "include",
-    headers: { "Content-Type": "application/json", /*Accept: "application/json"*/ },
+    headers: { "Content-Type": "application/json", Accept: "application/json", 'Access-Control-Allow-Origin': 'https://davidetrevisi.github.io',},
     body: JSON.stringify({ email: email, password: password }),
   })
     .then((res) => res.json())
@@ -80,6 +80,7 @@ async function signup(
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        'Access-Control-Allow-Origin': 'https://davidetrevisi.github.io',
       },
       body: JSON.stringify({
         account: account,
@@ -109,6 +110,7 @@ async function signup(
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        'Access-Control-Allow-Origin': 'https://davidetrevisi.github.io',
       },
       body: JSON.stringify({
         account: account,

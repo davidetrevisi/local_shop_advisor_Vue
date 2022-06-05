@@ -24,7 +24,7 @@ console.log(prodottosingolo)
   <br />
   <h3>Immagini:</h3>
   <div v-for="h in prodottosingolo.value.images">
-    <img :src="'http://localhost:8080/' + h" width="200">
+    <img :src="'https://local-shop-advisor.herokuapp.com/' + h" width="200">
   </div>
   <br />
   <span v-if="loggedUser.account == 'Cliente'">Inserisci la quantitá da aggiungere al carrello

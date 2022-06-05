@@ -1,5 +1,6 @@
 {
   "name": "easylibvue",
+  "homepage": "http://davidetrevisi.github.io/local_shop_advisor_Hosting/",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
