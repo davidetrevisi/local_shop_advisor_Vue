@@ -121,7 +121,8 @@ function pad(n, s = String(n)) {
     <input v-model="personal_number" :hidden="!isVenditore" :class="{ red: isRed }" placeholder="Civico" />
 
     <div />
-    <button class="btn2" :disabled="!canRegister" type="button" @click="signupButton(); $router.push('/')">
+    <button class="btn2" :disabled="!canRegister" type="button"
+      @click="signupButton(); $router.push('/local_shop_advisor_Hosting')">
       Registrati
     </button>
     <p>{{ canRegister ? "" : "Alcuni parametri sono errati." }}</p>
