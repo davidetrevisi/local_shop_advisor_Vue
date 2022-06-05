@@ -36,7 +36,7 @@ onBeforeMount(() => {
 
   <div class="log" v-if="loggedUser.id !== undefined">
 
-    <router-link to="/profilo">{{ loggedUser.email }}</router-link>
+    <router-link to="/local_shop_advisor_Hosting/profilo">{{ loggedUser.email }}</router-link>
     <button class="btn" style="margin-left: 2rem ;" type="button"
       @click="logout(); $router.push('/local_shop_advisor_Hosting')">LogOut</button>
 
