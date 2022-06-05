@@ -13,8 +13,8 @@ const isLoggedIn = computed(() => loggedUser.account !== undefined);
 const isVenditore = computed(() => loggedUser.account === "Venditore");
 const isCliente = computed(() => loggedUser.account === "Cliente");
 const isAdmin = computed(() => loggedUser.account === "Admin");
-onBeforeMount( () => {
-fetchProdotto()
+onBeforeMount(() => {
+  fetchProdotto()
 })
 </script>
 
@@ -29,14 +29,16 @@ fetchProdotto()
   <div class="log" v-if="loggedUser.account == undefined">
 
     <Login />
-    <button class="btn" style="margin-top: 10px ;" @click="$router.push('/registrazione')">Registrati</button>
+    <button class="btn" style="margin-top: 10px ;"
+      @click="$router.push('/local_shop_advisor_Hosting/registrazione')">Registrati</button>
 
   </div>
 
   <div class="log" v-if="loggedUser.id !== undefined">
 
     <router-link to="/profilo">{{ loggedUser.email }}</router-link>
-    <button class="btn" style="margin-left: 2rem ;" type="button" @click="logout(); $router.push('/')">LogOut</button>
+    <button class="btn" style="margin-left: 2rem ;" type="button"
+      @click="logout(); $router.push('/local_shop_advisor_Hosting')">LogOut</button>
 
   </div>
 
@@ -44,15 +46,20 @@ fetchProdotto()
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
-        <RouterLink to="/catalogo" @click="fetchProdotto()" v-if="!isVenditore">Catalogo</RouterLink>
-        <RouterLink to="/ordini" @click="listaOrdini()" v-if="isCliente">Ordini</RouterLink>
-        <RouterLink to="/ordiniVenditore" @click="listaOrdiniVenditore()" v-if="isVenditore">Ordini</RouterLink>
-        <RouterLink to="/catalogoVenditore" @click="catalogoProdotto()" v-if="isVenditore">Catalogo</RouterLink>
-        <RouterLink to="/negozio" @click="listaNegozi()" v-if="isVenditore || isAdmin">Negozi</RouterLink>
-        <RouterLink to="/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello</RouterLink>
-        <RouterLink to="/profilo" v-if="isVenditore || isCliente">Profilo</RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting">Home</RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/inserimento" v-if="isVenditore || isAdmin">Inserimento</RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/catalogo" @click="fetchProdotto()" v-if="!isVenditore">Catalogo
+        </RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/ordini" @click="listaOrdini()" v-if="isCliente">Ordini</RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/ordiniVenditore" @click="listaOrdiniVenditore()" v-if="isVenditore">
+          Ordini</RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/catalogoVenditore" @click="catalogoProdotto()" v-if="isVenditore">
+          Catalogo</RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/negozio" @click="listaNegozi()" v-if="isVenditore || isAdmin">Negozi
+        </RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/carrello" @click="cercaCarrello()" v-if="isCliente">Carrello
+        </RouterLink>
+        <RouterLink to="/local_shop_advisor_Hosting/profilo" v-if="isVenditore || isCliente">Profilo</RouterLink>
       </nav>
       <br />
       <br />

@@ -33,11 +33,12 @@ console.log(prodottosingolo)
   </span>
   <br />
   <button class="btn2" style="margin: 1rem 0;"
-    @click="aggiungiCarrello(prodottosingolo.value, quantity); $router.push('/catalogo')"
+    @click="aggiungiCarrello(prodottosingolo.value, quantity); $router.push('/local_shop_advisor_Hosting/catalogo')"
     v-if="loggedUser.account == 'Cliente'">Aggiungi a carrello</button>
   <br />
   <span v-if="loggedUser.account == 'Cliente' || loggedUser.account == 'Venditore' || loggedUser.account == 'Admin'">
-    <router-link to="/infoNegozio" @click="dettagliNegozio(prodottosingolo.value.shopId)">vai a negozio</router-link>
+    <router-link to="/local_shop_advisor_Hosting/infoNegozio" @click="dettagliNegozio(prodottosingolo.value.shopId)">vai
+      a negozio</router-link>
   </span>
 
 </template>

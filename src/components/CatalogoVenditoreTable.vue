@@ -19,11 +19,13 @@ onMounted(() => {
 
   <ul>
     <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-      <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{ prodottoCercato.name }}</router-link>
+      <router-link to="/local_shop_advisor_Hosting/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{
+          prodottoCercato.name
+      }}</router-link>
       <span v-if="loggedUser.account == 'Venditore'">
         -
         <button class="btn2"
-          @click="$router.push('/modificaProdotto'); dettagliProdotto(prodottoCercato.id)">Modifica</button>
+          @click="$router.push('/local_shop_advisor_Hosting/modificaProdotto'); dettagliProdotto(prodottoCercato.id)">Modifica</button>
         -
         <button class="btn2" @click="deleteProdotto(prodottoCercato)">Rimuovi</button>
       </span>

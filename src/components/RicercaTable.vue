@@ -40,7 +40,9 @@ function cercaProdottoButton() {
 
     <ul>
       <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-        <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato)">{{ prodottoCercato.name }}</router-link>
+        <router-link to="/local_shop_advisor_Hosting/prodotto" @click="dettagliProdotto(prodottoCercato)">{{
+            prodottoCercato.name
+        }}</router-link>
       </li>
     </ul>
 

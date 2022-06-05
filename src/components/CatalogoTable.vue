@@ -55,7 +55,8 @@ console.log(n)
 
     <ul>
       <li v-for="prodotto in prodotto.value" :key="prodotto.self">
-        <router-link to="/prodotto" @click="dettagliProdotto(prodotto.id)">{{ prodotto.name }}</router-link>
+        <router-link to="/local_shop_advisor_Hosting/prodotto" @click="dettagliProdotto(prodotto.id)">{{ prodotto.name
+        }}</router-link>
       </li>
     </ul>
   </form>
@@ -64,7 +65,9 @@ console.log(n)
     <h1>Prodotto ricercato:</h1>
     <ul>
       <li v-for="prodottoCercato in prodottoCercato.value" :key="prodottoCercato.self">
-        <router-link to="/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{ prodottoCercato.name }}
+        <router-link to="/local_shop_advisor_Hosting/prodotto" @click="dettagliProdotto(prodottoCercato.id)">{{
+            prodottoCercato.name
+        }}
         </router-link>
       </li>
     </ul>

@@ -26,7 +26,7 @@ function modificaProdottoButton(ID) {
     <input v-model="prodottosingolo.value.price" />
     <input v-model="prodottosingolo.value.description" />
     <button class="btn2" style="margin-left: 0.5em;" type="button"
-      @click="modificaProdottoButton(prodottosingolo.value.self); $router.push('/catalogoVenditore')">modifica</button>
+      @click="modificaProdottoButton(prodottosingolo.value.self); $router.push('/local_shop_advisor_Hosting/catalogoVenditore')">modifica</button>
     <br />
     <span style="color: red"> {{ prodottosingolo.value.self }} </span>
     <span style="color: red"> {{ warningMessage }} </span>

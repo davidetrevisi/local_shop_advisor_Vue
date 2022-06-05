@@ -15,10 +15,11 @@ onMounted(() => {
 
   <ul>
     <li v-for="listaNegozio in listaNegozio.value" :key="listaNegozio.self">
-      <router-link to="/infoNegozio" @click="dettagliNegozio(listaNegozio.id)">{{listaNegozio.name}}</router-link>
+      <router-link to="/local_shop_advisor_Hosting/infoNegozio" @click="dettagliNegozio(listaNegozio.id)">
+        {{ listaNegozio.name }}</router-link>
       -
       <button class="btn2"
-        @click=" dettagliNegozio(listaNegozio.id); $router.push('/modificaNegozio')">Modifica</button>
+        @click="dettagliNegozio(listaNegozio.id); $router.push('/local_shop_advisor_Hosting/modificaNegozio')">Modifica</button>
       -
       <button class="btn2" @click="deleteNegozio(listaNegozio)">Rimuovi</button>
     </li>

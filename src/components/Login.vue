@@ -17,6 +17,6 @@ function loginButton() {
     <input v-model="email" placeholder="Email" />
     <input v-model="password" placeholder="Password" />
     <button class="btn" style="margin-left: 1rem ;" type="button"
-      @click="loginButton(); $router.push('/')">LogIn</button>
+      @click="loginButton(); $router.push('/local_shop_advisor_Hosting')">LogIn</button>
   </form>
 </template>

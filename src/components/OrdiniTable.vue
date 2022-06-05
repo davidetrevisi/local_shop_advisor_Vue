@@ -19,7 +19,8 @@ onMounted(() => {
 
   <ul>
     <li v-for="ordine in ordine.value" :key="ordine.self">
-      <router-link to="/infoordini" @click="dettagliOrdine(ordine.id)">{{ ordine.id }}</router-link>
+      <router-link to="/local_shop_advisor_Hosting/infoordini" @click="dettagliOrdine(ordine.id)">{{ ordine.id }}
+      </router-link>
     </li>
   </ul>
 
