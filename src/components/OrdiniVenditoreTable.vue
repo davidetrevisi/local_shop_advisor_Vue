@@ -3,8 +3,6 @@ import { ref, onMounted, watch } from 'vue'
 import { loggedUser } from '../states/users.js'
 import { listaOrdiniVenditore, ordinev, dettagliOrdine } from '../states/orders.js'
 
-const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
-const API_URL = HOST + `/api/v1`
 
 onMounted(() => {
   listaOrdiniVenditore() // fetch on init

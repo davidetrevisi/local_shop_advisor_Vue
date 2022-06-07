@@ -3,11 +3,11 @@ import { RouterLink, RouterView } from "vue-router";
 import { cercaCarrello } from "@/states/carts.js";
 import { fetchProdotto, catalogoProdotto } from "@/states/products.js";
 import Login from "@/components/Login.vue";
-import { loggedUser, logout } from "@/states/users.js";
+import { loggedUser, cercaUtente, logout } from "@/states/users.js";
 import { listaNegozi } from "@/states/shops.js";
 import { listaOrdini, listaOrdiniVenditore } from "@/states/orders.js";
 import { ref, computed, onBeforeMount } from "vue";
-import MappaTable from "./components/MappaTable.vue";
+
 
 const isLoggedIn = computed(() => loggedUser.account !== undefined);
 const isVenditore = computed(() => loggedUser.account === "Venditore");
@@ -20,7 +20,7 @@ onBeforeMount(() => {
 
 <template>
 
-  <RouterLink to="/">
+  <RouterLink to="/local_shop_advisor_Hosting">
     <img alt="Vue logo" class="logo" src="@/assets/Logo3.png" width="170" />
   </RouterLink>
 
@@ -75,7 +75,6 @@ onBeforeMount(() => {
   max-width: 90%;
   margin: 0 auto;
   padding: 2rem;
-
   font-weight: normal;
 }
 
@@ -90,7 +89,6 @@ header {
   margin: 0 auto 2rem;
   position: absolute;
 }
-
 
 .log {
   font-size: 20px;
@@ -165,43 +163,4 @@ nav a {
 nav a:first-of-type {
   border: 0;
 }
-
-/*
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}*/
 </style>

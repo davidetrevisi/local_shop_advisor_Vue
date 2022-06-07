@@ -9,17 +9,16 @@ onBeforeMount(() => {
   cercaCarrello()
 })
 
-//(prodotto.value.find(p => p.id == item.productId._id) || { name: 'unknown' }).name
 </script>
 
 
 
 <template>
-  <h3 v-if="loggedUser.id !== undefined"> Carrello di: {{loggedUser.email}} </h3>
+  <h3 v-if="loggedUser.id !== undefined"> Carrello di: {{ loggedUser.email }} </h3>
   <ul>
 
     <li v-for="item in carrello.value.items" :key="item.value">
-      <h3 v-if="item.productId?.name !== undefined">Prodotto: {{item?.productId?.name}}</h3>
+      <h3 v-if="item.productId?.name !== undefined">Prodotto: {{ item?.productId?.name }}</h3>
       <h3 v-if="item.productId?.name === undefined" style="color: red">Prodotto eliminato dal catalogo, svuotare il
         carrello</h3>
       <h3 v-if="item.productId?.name !== undefined">Prezzo: {{ item.price }} €</h3>

@@ -16,7 +16,6 @@ const isN = computed(() => n.value === true);
 n.value = false
 
 function cercaProdottoButton() {
-  console.log(n)
   if (cercato.value == '') {
     warningMessage.value = 'inserisci il prodotto da cercre'
     return;
@@ -31,7 +30,7 @@ onMounted(() => {
   fetchProdotto() // fetch on init
 })
 
-console.log(n)
+
 
 </script>
 

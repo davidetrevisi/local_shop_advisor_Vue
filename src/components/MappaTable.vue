@@ -1,7 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { location } from '../states/location.js'
-//Trento -> lat: 46°4'45"48 N  lng: 11°7'48"72 E
 
 
 var lat = reactive([])
@@ -29,25 +28,6 @@ function seleziona() {
     console.log({ lat, lng });
 }
 
-
-/* codice senza script setup
-export default {
-    name: 'App',
-    data() {
-        return {
-            center: { lat: 46.0793, lng: 11.1302 },
-            markers: [
-                {
-                    position: {
-                        lat: 46.0793, lng: 11.1302
-                    },
-                }
-                , // Along list of clusters
-            ]
-        }
-    }
-}
-*/
 </script>
 
 <template>

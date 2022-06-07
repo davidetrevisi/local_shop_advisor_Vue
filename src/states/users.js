@@ -11,6 +11,8 @@ const loggedUser = reactive({
   email: undefined,
   id: undefined,
   self: undefined,
+  name: undefined,
+  surname: undefined
 });
 
 function setLoggedUser(data) {
@@ -18,6 +20,8 @@ function setLoggedUser(data) {
   loggedUser.email = data.email;
   loggedUser.id = data.id;
   loggedUser.self = data.self;
+  loggedUser.name = data.name;
+  loggedUser.surname = data.surname;
 }
 
 function clearLoggedUser() {
@@ -25,6 +29,8 @@ function clearLoggedUser() {
   loggedUser.email = undefined;
   loggedUser.id = undefined;
   loggedUser.self = undefined;
+  loggedUser.name = undefined;
+  loggedUser.surname = undefined;
 }
 
 async function login(email, password) {
@@ -133,13 +139,4 @@ async function signup(
   }
 }
 
-async function cercaUtente() {
-  utenteCercato.value = await (await fetch(API_URL + "/users/" + loggedUser.id, {
-    method: 'GET',
-    credentials: "include",
-    headers: { 'Content-Type': 'application/json' }
-  })).json()
-
-};
-
-export { loggedUser, utenteCercato, setLoggedUser, clearLoggedUser, login, logout, signup, cercaUtente };
+export { loggedUser, setLoggedUser, clearLoggedUser, login, logout, signup };

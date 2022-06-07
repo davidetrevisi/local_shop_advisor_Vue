@@ -41,8 +41,6 @@ function createProdottoButton() {
     return;
   }
   console.log(scelta.value)
-  //dettagliNegozio(scelta.value)
-  //console.log(negoziosingolo.id)
   warningMessage.value = ''
   createProdotto(name.value, category.value, price.value, description.value, tags.value, images, scelta.value).catch(err => console.error(err));
 };
@@ -127,7 +125,6 @@ function removeTag1(item) {
     <button class="btn2" style="margin-left:0.5rem;" type="button" @click="createProdottoButton">inserisci</button>
     <br />
 
-    <div>Selected: {{ scelta }}</div>
 
     <select v-model="scelta">
       <option disabled value="">Seleziona un negozio</option>

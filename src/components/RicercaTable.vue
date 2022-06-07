@@ -2,10 +2,6 @@
 import { ref, onMounted, watch } from 'vue'
 import { prodottoCercato, cercaProdotto, dettagliProdotto } from '../states/products.js'
 
-const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
-const API_URL = HOST + `/api/v1`
-const PRODUCTS_URL = API_URL + '/products'
-
 const cercato = ref('')
 const warningMessage = ref('')
 

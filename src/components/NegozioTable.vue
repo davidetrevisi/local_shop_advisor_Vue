@@ -2,7 +2,6 @@
 import { ref, onMounted, watch } from 'vue'
 import { dettagliNegozio, deleteNegozio, listaNegozi, listaNegozio } from '../states/shops.js'
 import { loggedUser } from '../states/users.js'
-const HOST = import.meta.env.VITE_API_HOST || `http://localhost:8080`
 
 onMounted(() => {
   listaNegozi() // fetch on init

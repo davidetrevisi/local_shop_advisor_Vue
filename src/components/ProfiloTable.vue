@@ -1,9 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { loggedUser, cercaUtente, utenteCercato } from '../states/users.js'
-const quantity = ref("")
-
-cercaUtente()
+import { loggedUser } from '../states/users.js'
 
 </script>
 
@@ -12,9 +8,9 @@ cercaUtente()
     <br />
     <h3>Tipo account: {{ loggedUser.account }}</h3>
     <br />
-    <h3>Nome: {{ utenteCercato.name }}</h3>
+    <h3>Nome: {{ loggedUser.name }}</h3>
     <br />
-    <h3>Cognome: {{ utenteCercato.surname }}</h3>
+    <h3>Cognome: {{ loggedUser.surname }}</h3>
     <br />
     <h3>Email: {{ loggedUser.email }}</h3>
 

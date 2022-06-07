@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { } from 'vue'
 import { negoziosingolo } from '../states/shops.js'
 import { catalogoProdottoNegozio, dettagliProdotto, prodottoCercato1 } from '../states/products.js'
 
