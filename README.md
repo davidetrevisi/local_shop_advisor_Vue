@@ -1,3 +1,5 @@
+Repository del frontend del progetto finito del corso di Ingegneria del Software, VI semestre, anno 2022, Ingegneria Informatica, delle Comunicazioni ed Elettronica.
+
 # EasyLibVue
 
 This template should help get you started developing with Vue 3 in Vite.
